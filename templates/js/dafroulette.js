@@ -22,7 +22,7 @@ const sdpConstraints = {
 
 var clientRoom;
 
-const socket = io.connect('https://{{ rtc_server }}');
+const socket = io.connect('//{{ rtc_server }}');
 
 socket.on('return rooms', function(numRooms) {
   document.getElementById("numberOfChevrutas").innerHTML = numRooms;
@@ -46,9 +46,7 @@ socket.on('join', function(room) {
   Sefaria.track.event("DafRoulette", "Chevruta Match Made", "initator");
   isChannelReady = true;
   socket.emit('send user info', '{{ client_name }}', '{{ client_uid }}', room);
-  if (!isStarted) {
-    maybeStart();
-  }
+  maybeStart();
 });
 
 socket.on('joined', function(room, conf) {
@@ -58,6 +56,7 @@ socket.on('joined', function(room, conf) {
   clientRoom = room;
   Sefaria.track.event("DafRoulette", "Chevruta Match Made", "joiner");
   socket.emit('send user info', '{{ client_name }}', '{{ client_uid }}', room);
+  maybeStart();
 });
 
 socket.on('got user name', function(userName, uid) {
@@ -125,13 +124,13 @@ function addAdditionalHTML() {
 
   const iframe = document.createElement('iframe');
   iframe.src = "https://www.sefaria.org/todays-daf-yomi";
-  document.getElementById("iframeContainer").appendChild(iframe)
+  document.getElementById("iframeContainer").appendChild(iframe);
 }
 
 
 function getNewChevruta() {
   Sefaria.track.event("DafRoulette", "New Chevruta Click", "");
-  location.reload()
+  location.reload();
 }
 
 
@@ -164,11 +163,7 @@ function reportUser() {
   }.bind(this)).fail(function (xhr, textStatus, errorThrown) {
       alert(Sefaria._("Unfortunately, there was an error sending this feedback. Please try again or try reloading this page."));
   });
-
-
-
 }
-
 
 function maybeStart() {
   console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
@@ -187,7 +182,6 @@ function maybeStart() {
 window.onbeforeunload = function() {
   socket.emit('bye', clientRoom);
 };
-
 
 /////////////////////////////////////////////////////////
 
@@ -260,30 +254,10 @@ function handleRemoteStreamRemoved(event) {
   console.log('Remote stream removed. Event: ', event);
 }
 
-
-function hangup() {
-  console.log('Hanging up.');
-  stop();
-
-  remoteVideo.srcObject = null;
-  const newRoomButton = document.querySelector('#newRoom');
-  newRoomButton.parentNode.removeChild(newRoomButton);
-  const iframe = document.querySelector('iframe');
-  iframe.parentNode.removeChild(iframe);
-
-  socket.emit('bye', clientRoom);
-}
-
 function handleRemoteHangup() {
   socket.emit('bye', clientRoom);
   console.log('Session terminated.');
   location.reload();
-}
-
-function stop() {
-  isStarted = false;
-  pc.close();
-  pc = null;
 }
 
 {% endautoescape %}
