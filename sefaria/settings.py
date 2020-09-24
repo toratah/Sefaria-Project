@@ -338,4 +338,4 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 24000000
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-+ALLOWED_HOSTS = ["localhost", "127.0.0.1","0.0.0.0", "208.97.140.105"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1","0.0.0.0", "208.97.140.105"]
