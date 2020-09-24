@@ -37,10 +37,10 @@ function HomeFeedSidebar() {
                     </div>
                     <div className="imageBox">
                         <CategoryLink category={"Tanakh"} />
-                       <!-- <CategoryLink category={"Mishnah"} />
+                       {/* <CategoryLink category={"Mishnah"} />
                         <CategoryLink category={"Talmud"} />
                         <CategoryLink category={"Midrash"} />
-                        <CategoryLink category={"Halakhah"} />-->
+                        <CategoryLink category={"Halakhah"} />*/}
                     </div>
                     <a href="/texts" className="button white fillWidth control-elem">
                         <i className="fa fa-bars"></i>
