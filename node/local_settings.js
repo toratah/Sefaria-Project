@@ -1,3 +1,5 @@
+const {resolve} = require('path');
+require('dotenv').config({path: resolve(__dirname,"./.env")})
 
 const local_settings = {
   DJANGO_HOST: function(){
@@ -21,7 +23,7 @@ const local_settings = {
       return process.env.NODEJS_PORT;
     } else {
       return 3000; // default;
-    } 
+    }
   }(),
 
   DEBUG: function(){
