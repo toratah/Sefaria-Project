@@ -203,10 +203,10 @@ class ReaderNavigationCategoryMenuContents extends Component {
             if (item.category !== 'Targum') {
               // Add a Category
               content.push((<div className='category' key={"cat." + this.props.nestLevel + "." + i}>
-                <h3>
+                <h1>
                   <span className='en'>{item.category}</span>
                   <span className='he'>{item.heCategory}</span>
-                </h3>
+                </h1>
                 <ReaderNavigationCategoryMenuContents
                   contents={item.contents}
                   categories={newCats}
