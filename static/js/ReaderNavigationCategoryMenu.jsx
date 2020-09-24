@@ -199,20 +199,23 @@ class ReaderNavigationCategoryMenuContents extends Component {
                           ));
             }
           } else {
-            // Add a Category
-            content.push((<div className='category' key={"cat." + this.props.nestLevel + "." + i}>
-                            <h3>
-                              <span className='en'>{item.category}</span>
-                              <span className='he'>{item.heCategory}</span>
-                            </h3>
-                            <ReaderNavigationCategoryMenuContents
-                              contents={item.contents}
-                              categories={newCats}
-                              width={this.props.width}
-                              nestLevel={this.props.nestLevel + 1}
-                              category={this.props.category}
-                              contentLang={this.props.contentLang} />
-                          </div>));
+            // TODO: In case this breaks, revert it
+            if (item.category !== 'Targum') {
+              // Add a Category
+              content.push((<div className='category' key={"cat." + this.props.nestLevel + "." + i}>
+                <h3>
+                  <span className='en'>{item.category}</span>
+                  <span className='he'>{item.heCategory}</span>
+                </h3>
+                <ReaderNavigationCategoryMenuContents
+                  contents={item.contents}
+                  categories={newCats}
+                  width={this.props.width}
+                  nestLevel={this.props.nestLevel + 1}
+                  category={this.props.category}
+                  contentLang={this.props.contentLang} />
+              </div>));
+            }
           }
         } else {
           if (item.isGroup) {
