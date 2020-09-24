@@ -616,7 +616,7 @@ def topics_toc_page(request, topicCategory):
 def get_search_params(get_dict, i=None):
     def get_param(param, i=None):
         return "{}{}".format(param, "" if i is None else i)
-    
+
     def get_filters(prefix, filter_type):
         return [urllib.parse.unquote(f) for f in get_dict.get(get_param(prefix+filter_type+"Filters", i)).split("|")] if get_dict.get(get_param(prefix+filter_type+"Filters", i), "") else []
 
@@ -628,7 +628,7 @@ def get_search_params(get_dict, i=None):
         sheet_filters += filters
         sheet_agg_types += [filter_type] * len(filters)
     text_filters = get_filters("t", "path")
-    
+
     return {
         "query": urllib.parse.unquote(get_dict.get(get_param("q", i), "")),
         "tab": urllib.parse.unquote(get_dict.get(get_param("tab", i), "text")),
@@ -874,7 +874,7 @@ def updates(request):
 
 def new_home(request):
     props = base_props(request)
-    title = _("Sefaria: a Living Library of Jewish Texts Online")
+    title = _("Toratah: The Library of Her Bible")
     desc  = _( "The largest free library of Jewish texts available to read online in Hebrew and English including Torah, Tanakh, Talmud, Mishnah, Midrash, commentaries and more.")
     return menu_page(request, props, "homefeed", title, desc)
 
@@ -1798,10 +1798,10 @@ def links_api(request, link_id_or_ref=None):
     if request.method == "DELETE":
         if not link_id_or_ref:
             return jsonResponse({"error": "No link id given for deletion."})
-        
+
         if not user.is_staff:
             return jsonResponse({"error": "Only Sefaria Moderators can delete links."})
-        
+
         try:
             ref = Ref(link_id_or_ref)
         except InputError as e:

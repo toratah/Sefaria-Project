@@ -65,7 +65,7 @@ Sefaria = extend(Sefaria, {
           }
           if (book in Sefaria.booksDict || book === "Sheet") {
               const remainder = first.slice(i);
-              if (remainder && remainder[0] !== " ") { 
+              if (remainder && remainder[0] !== " ") {
                 continue; // book name must be followed by a space, Jobs != Job
               }
               nums = remainder.slice(1);
@@ -1691,7 +1691,7 @@ Sefaria = extend(Sefaria, {
     if (Sefaria._uid) {
         $.post(Sefaria.apiHost + "/api/profile/sync?no_return=1",
               {user_history: JSON.stringify(history_item_array)},
-              data => { 
+              data => {
                 //console.log("sync resp", data)
                 if ("history" in Sefaria._userHistory) {
                   // If full user history has already been loaded into cache, then modify cache to keep it up to date
@@ -2170,7 +2170,7 @@ Sefaria = extend(Sefaria, {
       "Topics":"נושאים",
       "Sefaria Notifcations": "הודעות בספריא",
       //title meta tag
-      "Sefaria: a Living Library of Jewish Texts Online": "ספריא: ספרייה חיה של טקסטים יהודיים",
+      "Toratah: The Library of Her Bible": "תורתה: ספרייה חיה",
       "Recently Viewed" : "נצפו לאחרונה",
       "The Sefaria Library": "תוכן העניינים של ספריא",
       "Sefaria Search": "חיפוש בספריא",

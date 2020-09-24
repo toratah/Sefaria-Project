@@ -150,7 +150,7 @@ msgstr ""
 
 #: reader/views.py:905 templates/static/aramaic-translation-contest.html:4
 #: templates/static/home.html:5 templates/static/shavuot-map-2018.html:4
-msgid "Sefaria: a Living Library of Jewish Texts Online"
+msgid "Toratah: The Library of Her Bible"
 msgstr ""
 
 #: reader/views.py:906 templates/static/aramaic-translation-contest.html:6

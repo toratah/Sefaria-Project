@@ -253,7 +253,7 @@ class ReaderApp extends Component {
   }
   componentDidUpdate(prevProps, prevState) {
     $(".content").off("scroll.scrollPosition").on("scroll.scrollPosition", this.setScrollPositionInHistory); // when .content may have rerendered
-    
+
     if (this.justPopped) {
       //console.log("Skipping history update - just popped")
       this.justPopped = false;
@@ -501,7 +501,7 @@ class ReaderApp extends Component {
       if (state.menuOpen) {
         switch (state.menuOpen) {
           case "home":
-            hist.title = Sefaria._("Sefaria: a Living Library of Jewish Texts Online");
+            hist.title = Sefaria._("Toratah: The Library of Her Bible");
             hist.url   = "";
             hist.mode  = "home";
             break;
@@ -842,7 +842,7 @@ class ReaderApp extends Component {
       currentUrl += window.location.hash;
       hist.url += window.location.hash;
     }
-    
+
     if (replace) {
       history.replaceState(hist.state, hist.title, hist.url);
       //console.log("Replace History - " + hist.url);
@@ -921,7 +921,7 @@ class ReaderApp extends Component {
       const state = history.state;
       if (scrollTop == state.scrollPosition) { return; }
       state.scrollPosition = scrollTop;
-      history.replaceState(state, window.location.href);      
+      history.replaceState(state, window.location.href);
     }, 300);
   }
   getDefaultPanelSettings() {

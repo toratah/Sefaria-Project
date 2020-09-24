@@ -3,11 +3,11 @@
 SITE_SETTINGS = {
 	"TORAH_SPECIFIC": True,
 	"SITE_NAME": {
-		"en": "Sefaria",
-		"he": "ספריא"
+		"en": "Toratah",
+		"he": "תורתה"
 	},
 	"LIBRARY_NAME": {
-		"en": "The Sefaria Library",
-		"he": "האוסף של ספריא",
+		"en": "The Toratah Library",
+		"he": "ספריית תורתה",
 	}
 }
