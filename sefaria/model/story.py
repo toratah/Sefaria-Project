@@ -107,7 +107,10 @@ class Story(abst.AbstractMongoRecord):
             d["sheets"] = [self.sheet_metadata(i, return_id=True) for i in d["sheet_ids"]]
             if "publisher_id" not in d:
                 for sheet_dict in d["sheets"]:
-                    sheet_dict.update(self.publisher_metadata(sheet_dict["publisher_id"]))
+                    if sheet_dict is None:
+                        logger.info("Error : Sheet dict is None!!!")
+                    else:
+                        sheet_dict.update(self.publisher_metadata(sheet_dict["publisher_id"]))
 
         if "author_key" in d:
             p = person.Person().load({"key": d["author_key"]})

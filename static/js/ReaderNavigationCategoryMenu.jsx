@@ -182,6 +182,7 @@ class ReaderNavigationCategoryMenuContents extends Component {
                 var incomplete = this.props.contentLang == "hebrew" || Sefaria.interfaceLang == "hebrew" ? !chItem.heComplete : !chItem.enComplete;
                 var classes = classNames({refLink: 1, blockLink: 1, incomplete: incomplete});
 
+                // TODO: Remove the if to enable all commentaries
                 if (!!this.props.innerCategory && this.props.innerCategory === 'Commentary' && title !== 'Rashi') continue;
                 content.push((
                   <a href={url} className={classes} data-ref={chItem.firstSection} key={"text." + this.props.nestLevel + "." + i}>
@@ -196,6 +197,7 @@ class ReaderNavigationCategoryMenuContents extends Component {
               var incomplete = this.props.contentLang == "hebrew" || Sefaria.interfaceLang == "hebrew" ? !item.heComplete : !item.enComplete;
               var classes = classNames({catLink: 1, blockLink: 1, incomplete: incomplete});
 
+              // TODO: Remove the if to enable all commentaries
               if (!!this.props.innerCategory && this.props.innerCategory === 'Commentary' && item.category !== 'Rashi') continue;
               content.push((<a href={url} className={classes} data-cats={newCats.join("|")} key={"cat." + this.props.nestLevel + "." + i}>
                   <span className='en'>{item.category}</span>
@@ -246,6 +248,7 @@ class ReaderNavigationCategoryMenuContents extends Component {
             var incomplete = this.props.contentLang == "hebrew" || Sefaria.interfaceLang == "hebrew" ? !item.heComplete : !item.enComplete;
             var classes = classNames({refLink: 1, blockLink: 1, incomplete: incomplete});
 
+            // TODO: Remove the if to enable all commentaries
             if (!!this.props.innerCategory && this.props.innerCategory === 'Commentary' && item.category !== 'Rashi') continue;
             content.push((<a href={url}
                              className={classes}
