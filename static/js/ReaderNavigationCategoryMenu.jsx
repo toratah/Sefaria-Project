@@ -182,27 +182,27 @@ class ReaderNavigationCategoryMenuContents extends Component {
                 var incomplete = this.props.contentLang == "hebrew" || Sefaria.interfaceLang == "hebrew" ? !chItem.heComplete : !chItem.enComplete;
                 var classes = classNames({refLink: 1, blockLink: 1, incomplete: incomplete});
 
-                if (this.props.category !== 'Commentary' || (this.props.category === 'Commentary' && title === 'Rashi')) {
-                  content.push((
-                    <a href={url} className={classes} data-ref={chItem.firstSection} key={"text." + this.props.nestLevel + "." + i}>
-                      <span className='en'>{title}</span>
-                      <span className='he'>{heTitle}</span>
-                    </a>
-                  ));
-                }
+                if (!!this.props.innerCategory && this.props.innerCategory === 'Commentary' && title !== 'Rashi') continue;
+                content.push((
+                  <a href={url} className={classes} data-ref={chItem.firstSection} key={"text." + this.props.nestLevel + "." + i}>
+                    <span className='en'>{title}</span>
+                    <span className='he'>{heTitle}</span>
+                  </a>
+                ));
 
             } else {
               // Create a link to a subcategory
               var url = "/texts/" + newCats.join("/");
               var incomplete = this.props.contentLang == "hebrew" || Sefaria.interfaceLang == "hebrew" ? !item.heComplete : !item.enComplete;
               var classes = classNames({catLink: 1, blockLink: 1, incomplete: incomplete});
-              if (this.props.category !== 'Commentary' || (this.props.category === 'Commentary' && item.category === 'Rashi')) {
-                content.push((<a href={url} className={classes} data-cats={newCats.join("|")} key={"cat." + this.props.nestLevel + "." + i}>
-                    <span className='en'>{item.category}</span>
-                    <span className='he'>{item.heCategory}</span>
-                  </a>
-                ));
-              }
+
+              if (!!this.props.innerCategory && this.props.innerCategory === 'Commentary' && item.category !== 'Rashi') continue;
+              content.push((<a href={url} className={classes} data-cats={newCats.join("|")} key={"cat." + this.props.nestLevel + "." + i}>
+                  <span className='en'>{item.category}</span>
+                  <span className='he'>{item.heCategory}</span>
+                </a>
+              ));
+
             }
           } else {
             // TODO: In case this breaks, revert it
@@ -219,6 +219,7 @@ class ReaderNavigationCategoryMenuContents extends Component {
                   width={this.props.width}
                   nestLevel={this.props.nestLevel + 1}
                   category={this.props.category}
+                  innerCategory={item.category}
                   contentLang={this.props.contentLang} />
               </div>));
             }
@@ -244,17 +245,16 @@ class ReaderNavigationCategoryMenuContents extends Component {
             var url = "/" + Sefaria.normRef(ref);
             var incomplete = this.props.contentLang == "hebrew" || Sefaria.interfaceLang == "hebrew" ? !item.heComplete : !item.enComplete;
             var classes = classNames({refLink: 1, blockLink: 1, incomplete: incomplete});
-            if (this.props.category !== 'Commentary' || (this.props.category === 'Commentary' && title === 'Rashi')) {
-              content.push((<a href={url}
-                               className={classes}
-                               data-ref={ref}
-                               key={"text." + this.props.nestLevel + "." + i}>
-                  <span className='en'>{title}</span>
-                  <span className='he'>{heTitle}</span>
-                </a>
-              ));
-            }
 
+            if (!!this.props.innerCategory && this.props.innerCategory === 'Commentary' && item.category !== 'Rashi') continue;
+            content.push((<a href={url}
+                             className={classes}
+                             data-ref={ref}
+                             key={"text." + this.props.nestLevel + "." + i}>
+                <span className='en'>{title}</span>
+                <span className='he'>{heTitle}</span>
+              </a>
+            ));
 
           }
         }
@@ -283,6 +283,7 @@ ReaderNavigationCategoryMenuContents.propTypes = {
   category:   PropTypes.string.isRequired,
   contents:   PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
+  innerCategory: PropTypes.string,
   width:      PropTypes.number,
   nestLevel:  PropTypes.number
 };
