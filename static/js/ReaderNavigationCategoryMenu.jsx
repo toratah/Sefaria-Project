@@ -181,11 +181,15 @@ class ReaderNavigationCategoryMenuContents extends Component {
                 var url     = "/" + Sefaria.normRef(chItem.firstSection);
                 var incomplete = this.props.contentLang == "hebrew" || Sefaria.interfaceLang == "hebrew" ? !chItem.heComplete : !chItem.enComplete;
                 var classes = classNames({refLink: 1, blockLink: 1, incomplete: incomplete});
-                content.push((<a href={url} className={classes} data-ref={chItem.firstSection} key={"text." + this.props.nestLevel + "." + i}>
-                                <span className='en'>{title}</span>
-                                <span className='he'>{heTitle}</span>
-                              </a>
-                              ));
+
+                if (this.props.category !== 'Commentary' || (this.props.category === 'Commentary' && title === 'Rashi')) {
+                  content.push((
+                    <a href={url} className={classes} data-ref={chItem.firstSection} key={"text." + this.props.nestLevel + "." + i}>
+                      <span className='en'>{title}</span>
+                      <span className='he'>{heTitle}</span>
+                    </a>
+                  ));
+                }
 
             } else {
               // Create a link to a subcategory
