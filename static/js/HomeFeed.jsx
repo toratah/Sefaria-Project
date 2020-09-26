@@ -7,8 +7,8 @@ import {Story} from './Story';
 import Footer from'./Footer';
 import { usePaginatedScroll } from './Hooks';
 import {
-    NewsletterSignUpForm, 
-    LoadingMessage 
+    NewsletterSignUpForm,
+    LoadingMessage
 } from './Misc';
 
 function CategoryLink({category}) {
@@ -79,15 +79,15 @@ function HomeFeedSidebar() {
                     </h2>
                     <NewsletterSignUpForm contextName="Home Page Sidebar" />
                     <div id="homeSocialButtons">
-                        <a target="_blank" href={"https://www.facebook.com/sefaria.org" + (Sefaria.interfaceLang == "hebrew" ? ".il" : "")} className="fa fa-facebook"></a>
-                        <a target="_blank" href="https://www.twitter.com/SefariaProject" className="fa fa-twitter"></a>
-                        <a target="_blank" href="https://www.instagram.com/SefariaProject" className="fa fa-instagram"></a>
-                        <a target="_blank" href="https://www.youtube.com/user/SefariaProject" className="fa fa-youtube-play"></a>
+                        <a target="_blank" href="#" className="fa fa-facebook"></a>
+                        <a target="_blank" href="#" className="fa fa-twitter"></a>
+                        <a target="_blank" href="#" className="fa fa-instagram"></a>
+                        <a target="_blank" href="#" className="fa fa-youtube-play"></a>
                     </div>
                 </div>
             </div>
 
-            <div id="homeHelp" className="section">
+            {/*<div id="homeHelp" className="section">
                 <div className="sectionInner">
                     <h2>
                         <span className="int-en">Support Sefaria</span>
@@ -169,7 +169,7 @@ function HomeFeedSidebar() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*/}
 
           </div>
     );
