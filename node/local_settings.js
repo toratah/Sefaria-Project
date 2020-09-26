@@ -1,5 +1,8 @@
-const {resolve} = require('path');
-require('dotenv').config({path: resolve(__dirname,"./.env")})
+
+process.env['DJANGO_HOST'] = '208.97.140.105';
+process.env['DJANGO_PORT'] = 8000;
+process.env['NODEJS_PORT'] = 4040;
+process.env['DEBUG'] = false;
 
 const local_settings = {
   DJANGO_HOST: function(){

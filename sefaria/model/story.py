@@ -283,7 +283,10 @@ class UserStory(Story):
                 d["publisher_followed"] = d["publisher_id"] in followees
             elif "sheets" in d:
                 for sheet in d["sheets"]:
-                    sheet["publisher_followed"] = sheet["publisher_id"] in followees
+                    if sheet is None:
+                        logger.info("Error : Sheet in sheets is None!!!")
+                    else:
+                        sheet["publisher_followed"] = sheet["publisher_id"] in followees
 
         return c
 
