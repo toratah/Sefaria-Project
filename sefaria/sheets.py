@@ -393,7 +393,7 @@ def save_sheet(sheet, user_id, search_override=False, rebuild_nodes=False):
 			sheet["status"] = "unlisted"
 		sheet["owner"] = user_id
 		sheet["views"] = 1
-		
+
 		old_topics = []
 		topics_diff = topic_list_diff(old_topics, sheet.get("topics", []))
 
@@ -429,7 +429,7 @@ def save_sheet(sheet, user_id, search_override=False, rebuild_nodes=False):
 							}).delete()
 
 	sheet["includedRefs"] = refs_in_sources(sheet.get("sources", []))
-	sheet["expandedRefs"] = model.Ref.expand_refs(sheet["includedRefs"]) 
+	sheet["expandedRefs"] = model.Ref.expand_refs(sheet["includedRefs"])
 
 	if rebuild_nodes:
 		sheet = rebuild_sheet_nodes(sheet)
@@ -648,7 +648,7 @@ def get_sheets_for_ref(tref, uid=None, in_group=None):
 		query["group"] = {"$in": in_group}
 	sheetsObj = db.sheets.find(query,
 		{"id": 1, "title": 1, "owner": 1, "viaOwner":1, "via":1, "dateCreated": 1, "includedRefs": 1, "expandedRefs": 1, "views": 1, "topics": 1, "status": 1, "summary":1, "attribution":1, "assigner_id":1, "likes":1, "group":1, "options":1}).sort([["views", -1]])
-	sheetsObj.hint("expandedRefs_1")
+	# sheetsObj.hint("expandedRefs_1")
 	sheets = [s for s in sheetsObj]
 	user_ids = list({s["owner"] for s in sheets})
 	django_user_profiles = User.objects.filter(id__in=user_ids).values('email','first_name','last_name','id')
@@ -745,12 +745,12 @@ def topic_list_diff(old, new):
 
 def update_sheet_topics(sheet_id, topics, old_topics):
 	"""
-	Sets the topic list for `sheet_id` to those listed in list `topics`, 
+	Sets the topic list for `sheet_id` to those listed in list `topics`,
 	containing fields `asTyped` and `slug`.
-	Performs some normalization of `asTyped` and creates new topic objects for new topics.  
+	Performs some normalization of `asTyped` and creates new topic objects for new topics.
 	"""
 	normalized_slug_title_pairs = set()
-	
+
 	for topic in topics:
 	# Dedupe, normalize titles, create/choose topics for any missing slugs
 		title = normalize_new_topic_title(topic["asTyped"])
@@ -807,8 +807,8 @@ def choose_existing_topic_for_title(title):
 
 
 def update_sheet_topic_links(sheet_id, new_topics, old_topics):
-	"""	
-	Adds and removes sheet topic links per differences in old and new topics list.  
+	"""
+	Adds and removes sheet topic links per differences in old and new topics list.
 	Only adds link for public sheets.
 	"""
 	topic_diff = topic_list_diff(old_topics, new_topics)
@@ -898,7 +898,7 @@ def get_last_updated_time(sheet_id):
 
 	if not sheet:
 		return None
-		
+
 	return sheet["dateModified"]
 
 
